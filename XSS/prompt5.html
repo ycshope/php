@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+<body>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+        <input value="" type=image src onerror
+        ="prompt(1)"type="text">
+    </div>
+    <script>
+        function escape(input) {
+            // apply strict filter rules of level 0
+            // filter ">" and event handlers
+            input = input.replace(/>|on.+?=|focus/gi, '_');
+            console.log(input);
+            return '<input value="' + input + '" type="text">';
+        }
+        var input = ""
+        var body = document.getElementById("body");
+        // body.innerHTML = escape(input);
+    </script>
+</body>
+
+</html>

