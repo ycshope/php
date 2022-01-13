@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="demo1">
+    </div>
+</body>
+<script>
+    function escape(input) {
+        // filter potential start-tags
+        input = input.replace(/<([a-zA-Z])/g, '<_$1');
+        // use all-caps for heading
+        input = input.toUpperCase();
+
+        // sample input: you shall not pass! => YOU SHALL NOT PASS!
+        return '<h1>' + input + '</h1>';
+    }
+    input="";
+    document.getElementById("demo").innerHTML=escape(input);
+</script>
+
+</html>
